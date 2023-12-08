@@ -43,6 +43,7 @@ public class UserServiceImpl implements IUserService{
     @Transactional              //Esto se hace porque ese usuario tiene relacion con un rol, y para cuando se vaya a borrar esa columna habra error, Transactional se encarga de ese error.
     @Override
     public void deleteUser(String email) {
+        User theUser = getUser(email);
         userRepository.deleteByEmail(email);
     }
 
