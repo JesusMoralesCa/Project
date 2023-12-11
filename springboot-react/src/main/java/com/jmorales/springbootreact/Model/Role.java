@@ -24,6 +24,11 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users = new HashSet<>();
 
+
+    public Role(String name) {
+        this.name = name;
+    }
+
     public void assingRoleToUser(User user){
         user.getRoles().add(this);
         this.getUsers().add(user);
