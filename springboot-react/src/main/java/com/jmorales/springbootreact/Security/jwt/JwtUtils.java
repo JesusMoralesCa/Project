@@ -3,9 +3,9 @@ package com.jmorales.springbootreact.Security.jwt;
 import com.jmorales.springbootreact.Security.User.ProjectUserDetails;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +20,7 @@ public class JwtUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("${auth.token.secret}")
+    @Value("${auth.token.jwtSecret}")
     private String jwtSecret;
 
     @Value("${auth.token.expirationInMils}")
