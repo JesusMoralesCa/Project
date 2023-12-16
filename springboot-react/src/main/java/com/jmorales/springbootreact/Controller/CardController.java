@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Blob;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,16 @@ public class CardController {
         return cardService.getCard(cardName);
     }
 
+    @PostMapping("/create-new-card")
+    public ResponseEntity<String> createCard(@RequestParam("cardName") String name, @RequestParam("cardImage") Blob image,@RequestParam("packName") String packName){
+        try {
+            cardService.createCard(name, image, packName);
+            return ResponseEntity.ok("Card created");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
 
+    }
 
 
 }

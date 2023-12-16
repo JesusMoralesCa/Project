@@ -28,6 +28,7 @@ public class WebSecurityConfig {
 
     private final JwtAuthEntryPoint jwtAuthEntryPoint;
 
+
     @Bean
     public AuthTokenFilter authenticationTokenFilter(){
         return new AuthTokenFilter();
@@ -53,6 +54,7 @@ public class WebSecurityConfig {
         return authConfig.getAuthenticationManager();
     }
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer :: disable)
@@ -67,8 +69,6 @@ public class WebSecurityConfig {
         http.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
-
 
 
 }
