@@ -25,6 +25,7 @@ public class UserController {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.FOUND);
     }
 
+
     @GetMapping("/{email}")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getUserByEmail(@PathVariable("email") String email){

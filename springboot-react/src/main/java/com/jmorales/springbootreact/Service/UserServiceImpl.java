@@ -31,10 +31,12 @@ public class UserServiceImpl implements IUserService{
             throw new UserAlreadyExistsException(user.getEmail() + " already exists");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));           //Si no existe, encodeamos su contraseña
+        System.out.println(user.getPassword());
         Role userRole = roleRepository.findByName("ROLE_USER").get();       //Le damos el rol de usuario
         user.setRoles(Collections.singletonList(userRole));
         return userRepository.save(user);                                       //Y guardamos al usuario creado
     }
+    
 
     @Override
     public List<User> getUsers() {
