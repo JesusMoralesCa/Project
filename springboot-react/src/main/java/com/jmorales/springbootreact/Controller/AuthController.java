@@ -4,8 +4,8 @@ import com.jmorales.springbootreact.Exception.UserAlreadyExistsException;
 import com.jmorales.springbootreact.Model.User;
 import com.jmorales.springbootreact.Request.LoginRequest;
 import com.jmorales.springbootreact.Response.JwtResponse;
-import com.jmorales.springbootreact.Security.User.ProjectUserDetails;
-import com.jmorales.springbootreact.Security.jwt.JwtUtils;
+//import com.jmorales.springbootreact.Security.User.ProjectUserDetails;
+//import com.jmorales.springbootreact.Security.jwt.JwtUtils;
 import com.jmorales.springbootreact.Service.IUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class AuthController {
 
     private final IUserService userService;
     private final AuthenticationManager authenticationManager;
-    private final JwtUtils jwtUtils;
+    //private final JwtUtils jwtUtils;
 
 
     @PostMapping("/register-user")
@@ -43,7 +43,7 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
     }
-
+/*
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest request){
         Authentication authentication =
@@ -62,4 +62,6 @@ public class AuthController {
                 roles));
     }
 
+
+ */
 }
