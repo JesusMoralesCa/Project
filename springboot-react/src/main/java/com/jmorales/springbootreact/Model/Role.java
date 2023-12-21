@@ -19,13 +19,14 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private ERole name;
 
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users = new HashSet<>();
 
 
-    public Role(String name) {
+    public Role(ERole name) {
         this.name = name;
     }
 
@@ -45,10 +46,6 @@ public class Role {
             List<User> roleUsers = this.getUsers().stream().toList();
             roleUsers.forEach(this :: removeUserFromRole);
         }
-    }
-
-    public String getName(){
-        return name != null? name : "";
     }
 
 }
