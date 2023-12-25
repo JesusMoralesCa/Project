@@ -1,8 +1,9 @@
 package com.jmorales.springbootreact.Service;
 
-import com.jmorales.springbootreact.Exception.UserAlreadyExistsException;
+import com.jmorales.springbootreact.Model.ERole;
 import com.jmorales.springbootreact.Model.Role;
 import com.jmorales.springbootreact.Model.User;
+import com.jmorales.springbootreact.Payload.Request.SignupRequest;
 import com.jmorales.springbootreact.Repository.RoleRepository;
 import com.jmorales.springbootreact.Repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -11,8 +12,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -20,23 +22,52 @@ public class UserServiceImpl implements IUserService{
 
     private final UserRepository userRepository;
 
-    private final PasswordEncoder passwordEncoder;
-
     private final RoleRepository roleRepository;
+
+    private final PasswordEncoder encoder;
 
 
     @Override
-    public User registerUser(User user) {
-        if (userRepository.existsByEmail(user.getEmail())){         //Comprobamos si existe en la base de datos
-            throw new UserAlreadyExistsException(user.getEmail() + " already exists");
+    public void registerUser(SignupRequest signupRequest){
+
+        User user = new User(signupRequest.getUsername(),
+                signupRequest.getEmail(),
+                encoder.encode(signupRequest.getPassword()));
+
+        Set<String> strRoles = signupRequest.getRole();
+        Set<Role> roles = new HashSet<>();
+
+        if (strRoles == null) {
+            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            roles.add(userRole);
+        } else {
+            strRoles.forEach(role -> {
+                switch (role) {
+                    case "admin":
+                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(adminRole);
+
+                        break;
+                    case "mod":
+                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(modRole);
+
+                        break;
+                    default:
+                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(userRole);
+                }
+            });
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));           //Si no existe, encodeamos su contraseña
-        System.out.println(user.getPassword());
-        Role userRole = roleRepository.findByName("ROLE_USER").get();       //Le damos el rol de usuario
-        user.setRoles(Collections.singletonList(userRole));
-        return userRepository.save(user);                                       //Y guardamos al usuario creado
+
+        user.setRoles(roles);
+        userRepository.save(user);
+
     }
-    
 
     @Override
     public List<User> getUsers() {

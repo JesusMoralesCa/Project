@@ -1,6 +1,5 @@
 package com.jmorales.springbootreact.Service;
 
-import com.jmorales.springbootreact.Exception.RoleAlreadyExistException;
 import com.jmorales.springbootreact.Exception.UserAlreadyExistsException;
 import com.jmorales.springbootreact.Model.Role;
 import com.jmorales.springbootreact.Model.User;
@@ -26,12 +25,6 @@ public class RoleServiceImpl implements IRoleService {
         return roleRepository.findAll();
     }
 
-
-    @Override
-    public Role findRoleByName(String name) {
-        return roleRepository.findByName(name).get();
-    }
-
     @Override
     public User removeUserFromRole(Long userId, Long roleId) {
         Optional<User> user = userRepository.findById(userId);
@@ -49,7 +42,7 @@ public class RoleServiceImpl implements IRoleService {
         Optional<User> user = userRepository.findById(userId);
         Optional<Role> role = roleRepository.findById(roleId);
         if (user.isPresent() && user.get().getRoles().contains(role.get())){
-            throw new UserAlreadyExistsException(user.get().getFirstName() + " is already assigned to the " + role.get().getName() + " role");
+            throw new UserAlreadyExistsException(user.get().getUsername() + " is already assigned to the " + role.get().getName() + " role");
         }
         if (role.isPresent()){
             role.get().assingRoleToUser(user.get());

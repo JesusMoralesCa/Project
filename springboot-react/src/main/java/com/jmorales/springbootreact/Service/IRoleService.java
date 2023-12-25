@@ -8,9 +8,6 @@ import java.util.List;
 public interface IRoleService {
     List<Role> getRoles();
 
-
-    Role findRoleByName(String name);
-
     User removeUserFromRole(Long userId, Long roleId);
 
     User assignRoleToUser(Long userId, Long roleId);
