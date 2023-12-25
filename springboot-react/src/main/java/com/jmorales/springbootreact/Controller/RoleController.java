@@ -25,20 +25,6 @@ public class RoleController {
         return new ResponseEntity<>(roleService.getRoles(), FOUND);
     }
 
-    @PostMapping("/create-new-role")
-    public ResponseEntity<String> createRole(@RequestBody Role theRole){
-        try{
-            roleService.createRole(theRole);
-            return ResponseEntity.ok("New role created successfully");
-        }catch (RoleAlreadyExistException re){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(re.getMessage());
-        }
-    }
-
-    @DeleteMapping("/delete/{roleId}")
-    public void deleteRole(@PathVariable("roleId") Long roleId){
-        roleService.deleteRole(roleId);
-    }
 
     @PostMapping("/remove-all-users-from-role/{roleId}")
     public Role removeAllUsersFrolRole(@PathVariable("roleId") Long roleId){
