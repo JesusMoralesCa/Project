@@ -19,15 +19,19 @@ public class UserController {
     private final IUserService userService;
 
     @GetMapping("/all")
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<User>> getUsers(){
 
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.FOUND);
     }
 
 
+    @GetMapping("/allUsers")
+    public List<User> getAllUsers(){
+        List<User> users = userService.getUsers();
+        return users;
+    }
+
     @GetMapping("/{email}")
-    //@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getUserByEmail(@PathVariable("email") String email){
         try{
             User theUser = userService.getUser(email);

@@ -1,5 +1,6 @@
 package com.jmorales.springbootreact.Payload.Response;
 
+import com.jmorales.springbootreact.Model.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,5 +23,6 @@ public class JwtResponse {
         this.email = email;
         this.roles = roles;
     }
+
 
 }

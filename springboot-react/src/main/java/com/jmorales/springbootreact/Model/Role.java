@@ -1,5 +1,6 @@
 package com.jmorales.springbootreact.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,8 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private ERole name;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Collection<User> users = new HashSet<>();
 
 
