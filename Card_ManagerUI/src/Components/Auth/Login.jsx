@@ -6,7 +6,7 @@ import { useAuth } from "./AuthProvider";
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [login, setLogin] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -41,15 +41,15 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <label htmlFor="email" className="col-sm-2 col-form-label">
-            Email
+            Username
           </label>
           <div>
             <input
-              id="email"
-              name="email"
-              type="email"
+              id="username"
+              name="username"
+              type="username"
               className="form-control"
-              value={login.email}
+              value={login.username}
               onChange={handleInputChange}
             />
           </div>
@@ -80,7 +80,8 @@ const Login = () => {
             Login
           </button>
           <span style={{ marginLeft: "10px" }}>
-            Don't' have an account yet?<Link to={"/register"}> Register</Link>
+            Don't' have an account yet?
+            <Link to={"/registration"}> Register</Link>
           </span>
         </div>
       </form>

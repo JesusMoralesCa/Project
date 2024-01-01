@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const Registration = () => {
   const [registration, setRegistration] = useState({
+    username: "",
     email: "",
     password: "",
   });
@@ -21,7 +22,7 @@ const Registration = () => {
       const result = await registerUser(registration);
       setSuccessMessage(result);
       setErrorMessage("");
-      setRegistration({ firstName: "", lastName: "", email: "", password: "" });
+      setRegistration({ username: "", email: "", password: "" });
     } catch (error) {
       setSuccessMessage("");
       setErrorMessage(`Registration error : ${error.message}`);
@@ -43,6 +44,21 @@ const Registration = () => {
       <form onSubmit={handleRegistration}>
         <div className="mb-3 row">
           <label htmlFor="email" className="col-sm-2 col-form-label">
+            Username
+          </label>
+          <div className="col-sm-10">
+            <input
+              id="username"
+              name="username"
+              type="username"
+              className="form-control"
+              value={registration.username}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <div className="mb-3 row">
+          <label htmlFor="email" className="col-sm-2 col-form-label">
             Email
           </label>
           <div className="col-sm-10">
@@ -56,7 +72,6 @@ const Registration = () => {
             />
           </div>
         </div>
-
         <div className="mb-3 row">
           <label htmlFor="password" className="col-sm-2 col-form-label">
             Password
