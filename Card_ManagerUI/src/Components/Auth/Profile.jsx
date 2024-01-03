@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, getUser } from "../Utils/ApiFunctions";
 
 const Profile = () => {
   const [user, setUser] = useState({
     id: "",
+    username: "",
     email: "",
-    roles: [{ id: "", name: "" }],
   });
 
   const [message, setMessage] = useState("");
@@ -22,35 +22,34 @@ const Profile = () => {
         const userData = await getUser(userId, token);
         setUser(userData);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching user:", error);
+        setErrorMessage("Error fetching user data");
       }
     };
 
     fetchUser();
-  }, [userId]);
+  }, [userId, token]);
 
   const handleDeleteAccount = async () => {
-    const confirmed = window.confirm("Seguro que quieres borrar tu cuenta?");
+    const confirmed = window.confirm("¿Seguro que quieres borrar tu cuenta?");
     if (confirmed) {
-      await deleteUser(userId)
-        .then((response) => {
-          setMessage(response.data);
-          localStorage.removeItem("token");
-          localStorage.removeItem("userId");
-          localStorage.removeItem("userRole");
-          navigate("/");
-          window.location.reload();
-        })
-        .catch((error) => {
-          setErrorMessage(error.data);
-        });
+      try {
+        const response = await deleteUser(userId);
+        setMessage(response.data);
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("userRole");
+        navigate("/");
+      } catch (error) {
+        setErrorMessage(error.response.data);
+      }
     }
   };
 
   return (
     <div className="container">
       {errorMessage && <p className="text-danger">{errorMessage}</p>}
-      {message && <p className="text-danger">{message}</p>}
+      {message && <p className="text-success">{message}</p>}
       {user ? (
         <div
           className="card p-5 mt-5"
@@ -100,16 +99,10 @@ const Profile = () => {
 
                       <div className="form-group row">
                         <label className="col-md-2 col-form-label fw-bold">
-                          Roles:
+                          Username
                         </label>
                         <div className="col-md-10">
-                          <ul className="list-unstyled">
-                            {user.roles.map((role) => (
-                              <li key={role.id} className="card-text">
-                                {role.name}
-                              </li>
-                            ))}
-                          </ul>
+                          <p className="card-text">{user.username}</p>
                         </div>
                       </div>
                     </div>

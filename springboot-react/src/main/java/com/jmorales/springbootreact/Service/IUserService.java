@@ -16,6 +16,5 @@ public interface IUserService {
 
     User getUser(String email);
 
-
-
+    User getUserById(Long userId);
 }

@@ -12,15 +12,9 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const handleLogin = (token) => {
-    if (!token) {
-      console.error("No se proporcionó un token válido.");
-      // Manejar el caso en el que no se proporciona un token válido
-      return;
-    }
-
     try {
-      const decodedUser = jwtDecode(token); // Cambiado de jwtDecode a decode
-      localStorage.setItem("userId", decodedUser.sub);
+      const decodedUser = jwtDecode(token);
+      localStorage.setItem("userId", decodedUser.jti);
       localStorage.setItem("userRole", decodedUser.roles);
       localStorage.setItem("token", token);
       setUser(decodedUser);
