@@ -17,7 +17,10 @@ public class Card {
 
     private String name;
 
+    @Lob
     private Blob image;
+
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "boosterPack_id")

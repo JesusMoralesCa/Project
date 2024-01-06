@@ -1,6 +1,6 @@
 package com.jmorales.springbootreact.Controller;
 
-import com.jmorales.springbootreact.Exception.CardNotFoundException;
+
 import com.jmorales.springbootreact.Model.Card;
 import com.jmorales.springbootreact.Service.ICardService;
 import lombok.RequiredArgsConstructor;

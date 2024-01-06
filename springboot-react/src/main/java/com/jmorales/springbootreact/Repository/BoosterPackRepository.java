@@ -9,4 +9,6 @@ public interface BoosterPackRepository extends JpaRepository<BoosterPack, Long> 
 
     Optional<BoosterPack> findByName(String name);
 
+    void deleteByName(String name);
+
 }
