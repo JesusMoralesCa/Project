@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Blob;
 import java.util.List;
@@ -30,9 +31,12 @@ public class CardController {
     }
 
     @PostMapping("/create-new-card")
-    public ResponseEntity<String> createCard(@RequestParam("cardName") String name, @RequestParam("cardImage") Blob image,@RequestParam("packName") String packName){
+    public ResponseEntity<String> createCard(@RequestParam("cardName") String name,
+                                             @RequestParam("cardImage") MultipartFile image,
+                                             @RequestParam("description") String description,
+                                             @RequestParam("packName") String packName){
         try {
-            cardService.createCard(name, image, packName);
+            cardService.createCard(name, image, description, packName);
             return ResponseEntity.ok("Card created");
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());

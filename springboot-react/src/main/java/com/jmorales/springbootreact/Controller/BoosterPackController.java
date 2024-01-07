@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Blob;
 import java.util.List;
@@ -27,15 +28,15 @@ public class BoosterPackController {
 
 
     @GetMapping("/cards")
-    public List<Card> getAllCardsFromBoosterPack(@RequestParam String packname){
-        return  boosterPackService.getAllCardsFromBoosterPack(packname);
+    public List<Card> getAllCardsFromBoosterPack(@RequestParam String packName){
+        return  boosterPackService.getAllCardsFromBoosterPack(packName);
     }
 
 
     @PostMapping("/createPack")
-    public ResponseEntity<String> createPack(@RequestParam String packname, @RequestParam Blob image){
+    public ResponseEntity<String> createPack(@RequestParam String packName, @RequestParam MultipartFile file){
         try {
-            boosterPackService.createBoosterPack(packname, image);
+            boosterPackService.createBoosterPack(packName, file);
             return ResponseEntity.ok("Pack created");
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());

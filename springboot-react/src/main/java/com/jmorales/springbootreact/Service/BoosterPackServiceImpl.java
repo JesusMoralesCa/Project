@@ -10,8 +10,12 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.IOException;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,14 +32,19 @@ public class BoosterPackServiceImpl implements IBoosterPackService {
     }
 
     @Override
-    public BoosterPack createBoosterPack(String name, Blob image) {
+    public BoosterPack createBoosterPack(String name, MultipartFile file) throws SQLException, IOException {
         Optional<BoosterPack> boosterPack = boosterPackRepository.findByName(name);
 
         // Si el pack no existe
         if (!boosterPack.isPresent()) {
             BoosterPack newPack = new BoosterPack();
             newPack.setName(name);
-            newPack.setImage(image); // Asigna la imagen al nuevo BoosterPack
+
+            if (!file.isEmpty()){
+                byte[] photoBytes = file.getBytes();
+                Blob photoBlob = new SerialBlob(photoBytes);
+                newPack.setImage(photoBlob);
+            }
 
             boosterPackRepository.save(newPack);
             return newPack;

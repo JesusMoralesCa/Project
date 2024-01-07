@@ -27,21 +27,4 @@ public class RoleController {
     }
 
 
-    @PostMapping("/remove-all-users-from-role/{roleId}")
-    public Role removeAllUsersFrolRole(@PathVariable("roleId") Long roleId){
-        return roleService.removeAllUsersFromRole(roleId);
-    }
-
-    @PostMapping("/remove-user-from-role")
-    public User removeUserFromRole(@RequestParam("userId") Long userId, @RequestParam("roleId") Long roleId){
-        return roleService.removeUserFromRole(userId,roleId);
-    }
-
-    @PostMapping("/assign-user-to-role")
-    public User assignUserToRole(@RequestParam("userId") Long userId,@RequestParam("roleId") Long roleId){
-       return roleService.assignRoleToUser(userId,roleId);
-    }
-
-
-
 }

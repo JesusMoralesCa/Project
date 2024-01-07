@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +21,7 @@ public class UserServiceImpl implements IUserService{
 
     private final UserRepository userRepository;
 
-    private final RoleRepository roleRepository;
+    private final IRoleService roleService;
 
     private final PasswordEncoder encoder;
 
@@ -35,34 +34,8 @@ public class UserServiceImpl implements IUserService{
                 encoder.encode(signupRequest.getPassword()));
 
         Set<String> strRoles = signupRequest.getRole();
-        Set<Role> roles = new HashSet<>();
+        Set<Role> roles = roleService.assingRole(strRoles);
 
-        if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin":
-                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(adminRole);
-
-                        break;
-                    case "mod":
-                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(modRole);
-
-                        break;
-                    default:
-                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
-                }
-            });
-        }
 
         user.setRoles(roles);
         userRepository.save(user);

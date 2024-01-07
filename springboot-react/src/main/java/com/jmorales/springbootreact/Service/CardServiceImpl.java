@@ -9,8 +9,12 @@ import com.jmorales.springbootreact.Repository.CardRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.IOException;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +26,7 @@ public class CardServiceImpl implements ICardService{
     private final BoosterPackRepository boosterPackRepository;
 
     @Override
-    public Card createCard(String name, Blob image, String packName) {
+    public Card createCard(String name, MultipartFile file, String description, String packName) throws IOException, SQLException {
         Optional<BoosterPack> boosterPack = boosterPackRepository.findByName(packName);
 
         // El pack existe, crea la carta
@@ -30,8 +34,15 @@ public class CardServiceImpl implements ICardService{
             BoosterPack pack = boosterPack.get();
             Card newCard = new Card();
             newCard.setName(name);
-            newCard.setImage(image);
+            newCard.setDescription(description);
             newCard.setBoosterPack(pack);
+
+            if (!file.isEmpty()){
+                byte[] photoBytes = file.getBytes();
+                Blob photoBlob = new SerialBlob(photoBytes);
+                newCard.setImage(photoBlob);
+            }
+
 
             //Guarda la carta en el repositorio de cartas
             cardRepository.save(newCard);

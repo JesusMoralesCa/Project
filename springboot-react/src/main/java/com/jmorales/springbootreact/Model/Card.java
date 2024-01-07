@@ -25,4 +25,6 @@ public class Card {
     @ManyToOne
     @JoinColumn(name = "boosterPack_id")
     private BoosterPack boosterPack;
+
+
 }
