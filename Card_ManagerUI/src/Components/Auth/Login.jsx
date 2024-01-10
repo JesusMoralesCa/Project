@@ -26,6 +26,7 @@ const Login = () => {
       const token = success.token;
       auth.handleLogin(token);
       navigate(redirectUrl, { replace: true });
+      window.location.reload();
     } else {
       setErrorMessage("Usuario o contrasena invalido.");
     }
@@ -74,7 +75,7 @@ const Login = () => {
         <div className="mb-3">
           <button
             type="submit"
-            className="btn btn-hotel"
+            className="btn btn-dark"
             style={{ marginRight: "10px" }}
           >
             Login

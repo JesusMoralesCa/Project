@@ -1,5 +1,7 @@
 package com.jmorales.springbootreact.Model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.jmorales.springbootreact.Serialice.BlobBase64Serializer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +22,7 @@ public class BoosterPack {
 
     @Lob
     @Column(columnDefinition = "LONGBLOB")
+    @JsonSerialize(using = BlobBase64Serializer.class)
     private Blob image;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "boosterPack")

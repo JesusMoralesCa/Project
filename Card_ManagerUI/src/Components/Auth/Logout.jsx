@@ -9,6 +9,7 @@ const Logout = () => {
   const handleLogout = () => {
     auth.handleLogout();
     navigate("/", { state: { message: "Desconectado" } });
+    window.location.reload();
   };
 
   return (

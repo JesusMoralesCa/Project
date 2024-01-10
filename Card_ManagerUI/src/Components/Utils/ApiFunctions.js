@@ -76,3 +76,19 @@ export async function getUser(userId, token) {
 	}
 }
 
+/*Funcion para crear un pack*/ 
+export async function createPack(packName, image) {
+	const formData = new FormData()
+	formData.append("packName", packName)
+	formData.append("image", image)
+
+
+	const response = await api.post("/packs/createPack", formData,{
+		headers: getHeader()
+	})
+	if (response.status === 201) {
+		return true
+	} else {
+		return false
+	}
+}

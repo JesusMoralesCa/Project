@@ -2,8 +2,10 @@ package com.jmorales.springbootreact.Service;
 
 import com.jmorales.springbootreact.Exception.BoosterPackNotFoundException;
 import com.jmorales.springbootreact.Exception.CardNotFoundException;
+import com.jmorales.springbootreact.Exception.PackAlreadyExistException;
 import com.jmorales.springbootreact.Model.BoosterPack;
 import com.jmorales.springbootreact.Model.Card;
+import com.jmorales.springbootreact.Payload.Response.CardResponse;
 import com.jmorales.springbootreact.Repository.BoosterPackRepository;
 import com.jmorales.springbootreact.Repository.CardRepository;
 import jakarta.transaction.Transactional;
@@ -76,4 +78,6 @@ public class CardServiceImpl implements ICardService{
     public Card getCard(String name) {
         return cardRepository.findByName(name).orElseThrow(() -> new CardNotFoundException("Card not found"));
     }
+
+
 }

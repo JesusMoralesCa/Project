@@ -2,6 +2,8 @@ package com.jmorales.springbootreact.Service;
 
 import com.jmorales.springbootreact.Model.BoosterPack;
 import com.jmorales.springbootreact.Model.Card;
+import com.jmorales.springbootreact.Payload.Response.BoosterPackResponse;
+import com.jmorales.springbootreact.Payload.Response.CardResponse;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -17,5 +19,11 @@ public interface IBoosterPackService {
 
     List<Card> getAllCardsFromBoosterPack(String packName);
 
+    List<CardResponse> getAllCardResponseFromBoosterPack(String packName);
+
     void deleteBoosterPack(String packName);
+
+    BoosterPack getPack(String packName);
+
+    BoosterPackResponse getBoosterPackResponse(String packName) throws SQLException;
 }
