@@ -21,8 +21,8 @@ public class CardController {
     private final ICardService cardService;
 
     @GetMapping("/allCards")
-    public List<Card> getCards(){
-       return cardService.getCards();
+    public ResponseEntity<List<Card>> getCards(){
+       return new ResponseEntity<>(cardService.getCards(),HttpStatus.OK);
     }
 
     @GetMapping("/allCards/{cardName}")
@@ -31,12 +31,12 @@ public class CardController {
     }
 
     @PostMapping("/create-new-card")
-    public ResponseEntity<String> createCard(@RequestParam("cardName") String name,
-                                             @RequestParam("cardImage") MultipartFile image,
+    public ResponseEntity<String> createCard(@RequestParam("cardName") String cardName,
+                                             @RequestParam("cardImage") MultipartFile cardImage,
                                              @RequestParam("description") String description,
                                              @RequestParam("packName") String packName){
         try {
-            cardService.createCard(name, image, description, packName);
+            cardService.createCard(cardName, cardImage, description, packName);
             return ResponseEntity.ok("Card created");
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());

@@ -77,13 +77,33 @@ export async function getUser(userId, token) {
 }
 
 /*Funcion para crear un pack*/ 
-export async function createPack(packName, image) {
+export async function createPack(packName, file) {
 	const formData = new FormData()
 	formData.append("packName", packName)
-	formData.append("image", image)
+	formData.append("file", file)
 
 
-	const response = await api.post("/packs/createPack", formData,{
+	const response = await api.post("/packs/createPack", formData)
+	if (response.status === 201) {
+		return true
+	} else {
+		return false
+	}
+}
+
+
+/*Funcion para crear una carta*/ 
+export async function createCard(cardName, cardImage, description, packName) {
+	const formData = new FormData()
+	formData.append("cardName", cardName)
+	formData.append("cardImage", cardImage)
+	formData.append("description", description)
+	formData.append("packName", packName)
+
+	console.log(formData)
+
+
+	const response = await api.post("/cards/create-new-card", formData, {
 		headers: getHeader()
 	})
 	if (response.status === 201) {
@@ -92,3 +112,14 @@ export async function createPack(packName, image) {
 		return false
 	}
 }
+
+
+export async function getAllBoosterPackName() {
+	try {
+		const response = await api.get("/packs/allPacksNames")
+		return response.data
+	} catch (error) {
+		throw error
+	}
+}
+

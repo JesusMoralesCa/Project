@@ -106,6 +106,16 @@ public class BoosterPackServiceImpl implements IBoosterPackService {
                 );
     }
 
+    @Override
+    public BoosterPackResponse getBoosterPackResponseLow(String packName) throws SQLException {
+        BoosterPack pack = getPack(packName);
+
+        BoosterPackResponse response =new BoosterPackResponse(
+                pack.getId(),
+                pack.getName());
+        return response;
+    }
+
 
     private String convertBlobToBase64(Blob blob) {
         if (blob == null) {

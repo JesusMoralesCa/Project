@@ -28,10 +28,20 @@ public class BoosterPackController {
     private final IBoosterPackService boosterPackService;
     private final ICardService cardService;
 
-    @GetMapping("/all")
-    public List<BoosterPack> getAllBoosterPacks(){
-       return boosterPackService.getBoosterPacks();
+    @GetMapping("/allPacksNames")
+    public ResponseEntity<List<BoosterPackResponse>> getAllBoostersName() throws SQLException {
+        List<BoosterPackResponse> packResponses = new ArrayList<>();
+        List<BoosterPack> packsList = boosterPackService.getBoosterPacks();
+
+        for (BoosterPack pack : packsList) {
+            // Obtener la respuesta del paquete y agregarla a la lista
+            BoosterPackResponse packResponse = boosterPackService.getBoosterPackResponseLow(pack.getName());
+            packResponses.add(packResponse);
+        }
+
+        return new ResponseEntity<>(packResponses, HttpStatus.OK);
     }
+
 
     @GetMapping("/allBooster")
     public ResponseEntity<List<BoosterPackResponse>> getAllBoosters() throws SQLException {

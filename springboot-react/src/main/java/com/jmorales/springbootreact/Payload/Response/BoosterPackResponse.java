@@ -22,4 +22,10 @@ public class BoosterPackResponse {
         this.image = image;
         this.cardsList = cardsList;
     }
+
+    public BoosterPackResponse(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
 }

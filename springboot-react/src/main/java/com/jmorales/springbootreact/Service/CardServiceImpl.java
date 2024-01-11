@@ -17,6 +17,7 @@ import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,7 +63,8 @@ public class CardServiceImpl implements ICardService{
 
     @Override
     public List<Card> getCards() {
-        return cardRepository.findAll();
+        List<Card> CardList = cardRepository.findAll();
+        return CardList;
     }
 
     @Transactional

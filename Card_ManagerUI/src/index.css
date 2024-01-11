@@ -5,6 +5,11 @@ body {
   background-size: contain;
 }
 
+.imagePre {
+  width: 200px;
+  height: 200px;
+}
+
 /*footer */
 #footer {
   position: absolute;

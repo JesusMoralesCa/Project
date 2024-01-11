@@ -26,4 +26,6 @@ public interface IBoosterPackService {
     BoosterPack getPack(String packName);
 
     BoosterPackResponse getBoosterPackResponse(String packName) throws SQLException;
+
+    BoosterPackResponse getBoosterPackResponseLow(String packName) throws SQLException;
 }
