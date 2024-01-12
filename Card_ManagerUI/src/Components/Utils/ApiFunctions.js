@@ -13,6 +13,15 @@ export const getHeader = () => {
     }
 }
 
+
+export const getHeaderData = () => {
+    const token = localStorage.getItem("token")
+    return {
+		Authorization: `Bearer ${token}`,
+		"Content-Type": "multipart/form-data"
+    }
+}
+
 /* Función para registrar un usuario */
 export async function registerUser(registration){
     try {
@@ -104,7 +113,7 @@ export async function createCard(cardName, cardImage, description, packName) {
 
 
 	const response = await api.post("/cards/create-new-card", formData, {
-		headers: getHeader()
+		headers: getHeaderData()
 	})
 	if (response.status === 201) {
 		return true

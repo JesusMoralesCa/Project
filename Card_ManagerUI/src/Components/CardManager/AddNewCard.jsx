@@ -24,7 +24,7 @@ const AddNewCard = () => {
         newCard.packName
       );
 
-      if (success) {
+      if (success !== undefined) {
         setSuccessMessage("New Card created: " + newCard.cardName);
         setNewCard({
           cardName: "",
