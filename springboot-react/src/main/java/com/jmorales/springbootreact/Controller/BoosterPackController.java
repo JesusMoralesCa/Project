@@ -1,14 +1,14 @@
 package com.jmorales.springbootreact.Controller;
 
 import com.jmorales.springbootreact.Model.BoosterPack;
-import com.jmorales.springbootreact.Model.Card;
+
 import com.jmorales.springbootreact.Payload.Response.BoosterPackResponse;
 import com.jmorales.springbootreact.Payload.Response.CardResponse;
 import com.jmorales.springbootreact.Service.IBoosterPackService;
 
 import com.jmorales.springbootreact.Service.ICardService;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.codec.binary.Base64;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

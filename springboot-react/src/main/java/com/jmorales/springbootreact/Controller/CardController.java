@@ -2,6 +2,7 @@ package com.jmorales.springbootreact.Controller;
 
 
 import com.jmorales.springbootreact.Model.Card;
+import com.jmorales.springbootreact.Payload.Response.CardResponse;
 import com.jmorales.springbootreact.Service.ICardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.Blob;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:5173")
@@ -21,8 +21,8 @@ public class CardController {
     private final ICardService cardService;
 
     @GetMapping("/allCards")
-    public ResponseEntity<List<Card>> getCards(){
-       return new ResponseEntity<>(cardService.getCards(),HttpStatus.OK);
+    public ResponseEntity<List<CardResponse>> getCards(){
+       return new ResponseEntity<>(cardService.getAllCardsResponse(),HttpStatus.OK);
     }
 
     @GetMapping("/allCards/{cardName}")

@@ -132,3 +132,12 @@ export async function getAllBoosterPackName() {
 	}
 }
 
+
+export async function getAllCards() {
+	try {
+		const response = await api.get("/cards/allCards")
+		return response.data
+	} catch (error) {
+		throw error
+	}
+}

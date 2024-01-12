@@ -2,9 +2,10 @@ package com.jmorales.springbootreact.Service;
 
 import com.jmorales.springbootreact.Exception.BoosterPackNotFoundException;
 import com.jmorales.springbootreact.Exception.CardNotFoundException;
-import com.jmorales.springbootreact.Exception.PackAlreadyExistException;
+
 import com.jmorales.springbootreact.Model.BoosterPack;
 import com.jmorales.springbootreact.Model.Card;
+
 import com.jmorales.springbootreact.Payload.Response.CardResponse;
 import com.jmorales.springbootreact.Repository.BoosterPackRepository;
 import com.jmorales.springbootreact.Repository.CardRepository;
@@ -17,9 +18,10 @@ import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -67,6 +69,16 @@ public class CardServiceImpl implements ICardService{
         return CardList;
     }
 
+
+    @Override
+    public List<CardResponse> getAllCardsResponse(){
+        List<Card> cardsList = cardRepository.findAll();
+        List<CardResponse> cardResponses = cardsList.stream()
+                .map(card -> new CardResponse(card.getId(), card.getName(), convertBlobToBase64(card.getImage()),card.getDescription(), card.getBoosterPackName()))
+                .collect(Collectors.toList());
+        return cardResponses;
+    }
+
     @Transactional
     @Override
     public void deleteCard(String name) {
@@ -82,4 +94,18 @@ public class CardServiceImpl implements ICardService{
     }
 
 
+    private String convertBlobToBase64(Blob blob) {
+        if (blob == null) {
+            return null;
+        }
+
+        try {
+            byte[] bytes = blob.getBytes(1, (int) blob.length());
+            return Base64.getEncoder().encodeToString(bytes);
+        } catch (SQLException e) {
+            // Manejar la excepción según tus necesidades
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
