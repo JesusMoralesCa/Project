@@ -134,3 +134,50 @@ body {
 .container-sm .row {
   margin: 0; /* Elimina el margen para que esté completamente centrado */
 }
+
+
+/* PAGINATOR */
+
+/* Estilos para el contenedor principal de paginación */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 40px;
+}
+
+/* Estilos para cada elemento de la paginación */
+.pagination-item {
+  margin:  50px;
+}
+
+/* Estilos para los enlaces "Anterior" y "Siguiente" */
+.pagination-link {
+  text-decoration: none;
+  color: #333; /* Color de texto deseado */
+  padding: 5px 10px;
+  border: 1px solid #ffffff; /* Borde del enlace */
+  border-radius: 5px; /* Bordes redondeados */
+  margin: 20px;
+}
+
+/* Estilos para el enlace "Anterior" cuando está desactivado */
+.pagination-link[aria-disabled="true"] {
+  color: #aaa; /* Color de texto para desactivado */
+  cursor: not-allowed;
+}
+
+/* Estilos para el enlace "Siguiente" cuando está desactivado */
+.pagination-link[aria-disabled="true"]:last-child {
+  color: #aaa; /* Color de texto para desactivado */
+  cursor: not-allowed;
+}
+
+/* Estilos para el enlace activo */
+.pagination-active {
+  background-color: #ffffff; /* Color de fondo del enlace activo */
+  color: #000000; /* Color de texto para el enlace activo */
+  
+}
