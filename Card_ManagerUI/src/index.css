@@ -1,6 +1,5 @@
 body {
-  background-color: #A5A6A6;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23A5A6A6' cx='50' cy='0' r='50'/%3E%3Cg fill='%23a3acac' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23a0b2b2' cx='50' cy='100' r='50'/%3E%3Cg fill='%239eb7b8' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%239dbbbe' cx='50' cy='200' r='50'/%3E%3Cg fill='%239bc0c4' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%239ac3c9' cx='50' cy='300' r='50'/%3E%3Cg fill='%2398c7ce' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%2397c9d3' cx='50' cy='400' r='50'/%3E%3Cg fill='%2396ccd8' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%2396cedc' cx='50' cy='500' r='50'/%3E%3Cg fill='%2395d0e1' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%2395d2e5' cx='50' cy='600' r='50'/%3E%3Cg fill='%2395d3e9' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%2395d4ec' cx='50' cy='700' r='50'/%3E%3Cg fill='%2395d5f0' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%2396d6f3' cx='50' cy='800' r='50'/%3E%3Cg fill='%2397d6f7' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%2398d7fa' cx='50' cy='900' r='50'/%3E%3Cg fill='%2399d7fc' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%239AD7FF' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+  background-color: #ccccccc0;
   background-attachment: fixed;
   background-size: contain;
 }
@@ -12,7 +11,7 @@ body {
 
 /*footer */
 #footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   height: auto;
@@ -122,7 +121,8 @@ body {
   border-radius: 10px; /* Ajusta el radio de los bordes según sea necesario */
   padding: 20px; /* Ajusta el espacio interno según sea necesario */
   max-width: 60%; /* Ajusta el ancho máximo según sea necesario */
-  margin: 50px auto; /* Centra el contenedor horizontalmente */
+  margin: 50px auto;
+  margin-bottom: 100px;
 }
 
 /* Estilos para el contenedor flex en el centro */

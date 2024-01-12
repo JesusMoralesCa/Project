@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div id="footer">
       <div className="container-fluid">
-        <div className="row d-none d-lg-flex">
+        <div className="row d-lg-flex">
           <div className="col">
             <ul className="nav align-items-center justify-content-start fw-bold">
               <li className="nav-item text-uppercase ps-1 pe-4">axios</li>

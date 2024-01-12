@@ -6,7 +6,7 @@ import ReactPaginate from "react-paginate";
 const AllCardListing = () => {
   const [cards, setCards] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
-  const cardsPerPage = 4; // Número de tarjetas por página
+  const cardsPerPage = 8; // Número de tarjetas por página
 
   useEffect(() => {
     const fetchData = async () => {
