@@ -1,7 +1,12 @@
 import React from "react";
+import AllCardListing from "../Common/AllCardListing";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <AllCardListing />
+    </div>
+  );
 };
 
 export default Home;

@@ -1,20 +1,24 @@
 import React from "react";
 
-const Card = () => {
+const Card = ({ card }) => {
   return (
-    <div className="col-sm-6 col-md-12 col-lg-4 mt-3 col-12">
-      <div className="w-100">
-        <div className="card-img-top img-fluid">
+    <div className="card-container">
+      <div className="image-container">
+        <a href={`/${card.boosterPack}/${card.name}`}>
           <img
             src={`data:image/jpg;base64, ${card.image}`}
             alt={card.name}
-            className="card-img-top img-fluid"
+            className="card-image"
           />
-        </div>
+        </a>
       </div>
-      <div className="card-body d-flex flex-column px-2 py-2">
-        <p className="card-text">
-          <a href={`data:image/jpg;base64, ${card.image}`} title={card.name}>
+      <div className="text-container">
+        <p className="card-name">
+          <a
+            href={`/${card.boosterPack}/${card.name}`}
+            title={card.name}
+            style={{ textDecoration: "none", color: "white" }}
+          >
             {card.name}
           </a>
         </p>

@@ -76,21 +76,61 @@ body {
  }
 
 
+/*Cartas*/
 
+/* Estilos para el contenedor principal de la tarjeta */
+.card-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  background-color: #919191c0;
+  border-radius: 10%;
+  margin: 5px;
+ 
+}
 
- .card-img-top {
+/* Estilos para el contenedor de la imagen */
+.image-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Estilos para la imagen */
+.card-image {
   width: 100%;
- }
- 
- 
- .img-fluid {
-  max-width: 100%;
   height: auto;
- }
+}
+
+/* Estilos para el contenedor de texto */
+.text-container {
+  text-align: center;
+  padding: 10px;
+}
+
+/* Estilos para el nombre de la tarjeta */
+.card-name {
+
+  margin: 0;
+}
 
 
- .card-body {
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
- }
+
+/* Estilos para el contenedor oscuro */
+.dark-container {
+  background-color: #5b5b5bc0; /* Cambia esto al color oscuro que desees */
+  border-radius: 10px; /* Ajusta el radio de los bordes según sea necesario */
+  padding: 20px; /* Ajusta el espacio interno según sea necesario */
+  max-width: 60%; /* Ajusta el ancho máximo según sea necesario */
+  margin: 50px auto; /* Centra el contenedor horizontalmente */
+}
+
+/* Estilos para el contenedor flex en el centro */
+.container-sm {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-sm .row {
+  margin: 0; /* Elimina el margen para que esté completamente centrado */
+}
