@@ -12,6 +12,7 @@ import Footer from "../src/Components/Layout/Footer";
 import AddBoosterPack from "./Components/CardManager/AddBoosterPack";
 import AddNewCard from "../src/Components/CardManager/AddNewCard";
 import CardPageInfo from "../src/Components/CardManager/CardPageInfo";
+import AdminBoard from "./Components/Common/AdminBoard";
 import { AuthProvider } from "./Components/Auth/AuthProvider";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
               <Route path="/Login" element={<Login />}></Route>
               <Route path="/registration" element={<Registration />}></Route>
               <Route path="/profile" element={<Profile />}></Route>
+              <Route path="/admin" element={<AdminBoard />}></Route>
               <Route path="/NewPack" element={<AddBoosterPack />}></Route>
               <Route path="/NewCard" element={<AddNewCard />}></Route>
               <Route

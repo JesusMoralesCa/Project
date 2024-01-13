@@ -20,7 +20,6 @@ const CardPageInfo = () => {
   }, [cardName]); // Agrega cardName como dependencia para que useEffect se ejecute cuando cambie
 
   if (!card) {
-    // Muestra un mensaje de carga o maneja la carga de alguna manera mientras se obtienen los datos
     return <p>Cargando...</p>;
   }
 

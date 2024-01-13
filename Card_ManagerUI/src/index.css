@@ -181,3 +181,45 @@ body {
   color: #000000; 
   
 }
+
+
+
+
+/*////////////////// ADMIN BOARD ///////////////*/
+
+.admin-board {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  margin: 0;
+
+}
+.contenedor-creacion-pack {
+
+  height: 300px;
+
+  background-color: #9d989d;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 10px; /* Añadido un margen para separar los divs */
+}
+
+.contenedor-creacion-pack:hover {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.contenedor-creacion-pack:active {
+  transform: scale(0.95);
+}
+
+.texto-creacion-pack {
+  font-size: 18px;
+  font-weight: bold;
+}
