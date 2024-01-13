@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = ({ card }) => {
   return (
@@ -14,13 +15,14 @@ const Card = ({ card }) => {
       </div>
       <div className="text-container">
         <p className="card-name">
-          <a
-            href={`/${card.boosterPack}/${card.name}`}
-            title={card.name}
-            style={{ textDecoration: "none", color: "white" }}
-          >
-            {card.name}
-          </a>
+          <Link to={`/${card.boosterPack}/${card.name}`}>
+            <a
+              title={card.name}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              {card.name}
+            </a>
+          </Link>
         </p>
       </div>
     </div>

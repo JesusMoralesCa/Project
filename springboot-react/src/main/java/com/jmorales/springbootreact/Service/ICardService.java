@@ -17,6 +17,8 @@ public interface ICardService {
 
     List<CardResponse> getAllCardsResponse();
 
+    CardResponse getCardResponse(String cardName);
+
     void deleteCard(String name);
 
     Card getCard(String name);

@@ -117,10 +117,10 @@ body {
 
 /* Estilos para el contenedor oscuro */
 .dark-container {
-  background-color: #5b5b5bc0; /* Cambia esto al color oscuro que desees */
-  border-radius: 10px; /* Ajusta el radio de los bordes según sea necesario */
-  padding: 20px; /* Ajusta el espacio interno según sea necesario */
-  max-width: 60%; /* Ajusta el ancho máximo según sea necesario */
+  background-color: #5b5b5bc0; 
+  border-radius: 10px; 
+  padding: 20px; 
+  max-width: 60%; 
   margin: 50px auto;
   margin-bottom: 100px;
 }
@@ -132,7 +132,7 @@ body {
 }
 
 .container-sm .row {
-  margin: 0; /* Elimina el margen para que esté completamente centrado */
+  margin: 0; 
 }
 
 
@@ -156,28 +156,28 @@ body {
 /* Estilos para los enlaces "Anterior" y "Siguiente" */
 .pagination-link {
   text-decoration: none;
-  color: #333; /* Color de texto deseado */
+  color: #333; 
   padding: 5px 10px;
-  border: 1px solid #ffffff; /* Borde del enlace */
-  border-radius: 5px; /* Bordes redondeados */
+  border: 1px solid #ffffff; 
+  border-radius: 5px; 
   margin: 20px;
 }
 
 /* Estilos para el enlace "Anterior" cuando está desactivado */
 .pagination-link[aria-disabled="true"] {
-  color: #aaa; /* Color de texto para desactivado */
+  color: #aaa; 
   cursor: not-allowed;
 }
 
 /* Estilos para el enlace "Siguiente" cuando está desactivado */
 .pagination-link[aria-disabled="true"]:last-child {
-  color: #aaa; /* Color de texto para desactivado */
+  color: #aaa;
   cursor: not-allowed;
 }
 
 /* Estilos para el enlace activo */
 .pagination-active {
-  background-color: #ffffff; /* Color de fondo del enlace activo */
-  color: #000000; /* Color de texto para el enlace activo */
+  background-color: #ffffff; 
+  color: #000000; 
   
 }

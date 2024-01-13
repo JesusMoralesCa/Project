@@ -79,6 +79,17 @@ public class CardServiceImpl implements ICardService{
         return cardResponses;
     }
 
+
+    @Override
+    public CardResponse getCardResponse(String cardName){
+        Card card = getCard(cardName);
+        return new CardResponse(card.getId(),
+                card.getName(),
+                convertBlobToBase64(card.getImage()),
+                card.getDescription(),
+                card.getBoosterPackName());
+    }
+
     @Transactional
     @Override
     public void deleteCard(String name) {

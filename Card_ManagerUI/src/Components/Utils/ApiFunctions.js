@@ -141,3 +141,13 @@ export async function getAllCards() {
 		throw error
 	}
 }
+
+export async function getSingleCard(cardName) {
+	try {
+	  const response = await api.get(`/cards/allCards/${cardName}`);
+	  return response.data;
+	} catch (error) {
+	  throw error;
+	}
+  }
+  

@@ -26,8 +26,8 @@ public class CardController {
     }
 
     @GetMapping("/allCards/{cardName}")
-    public Card getCard(@PathVariable("cardName") String cardName) {
-        return cardService.getCard(cardName);
+    public ResponseEntity<CardResponse> getCard(@PathVariable("cardName") String cardName) {
+        return new ResponseEntity<>(cardService.getCardResponse(cardName),HttpStatus.OK);
     }
 
     @PostMapping("/create-new-card")

@@ -6,7 +6,8 @@ import ReactPaginate from "react-paginate";
 const AllCardListing = () => {
   const [cards, setCards] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
-  const cardsPerPage = 8; // Número de tarjetas por página
+  const [searchTerm, setSearchTerm] = useState("");
+  const cardsPerPage = 4; // Número de tarjetas por página
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,19 +22,33 @@ const AllCardListing = () => {
     fetchData();
   }, []);
 
-  const pageCount = Math.ceil(cards.length / cardsPerPage);
+  const filteredCards = cards.filter(
+    (card) =>
+      card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      card.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const pageCount = Math.ceil(filteredCards.length / cardsPerPage);
 
   const handlePageChange = ({ selected }) => {
     setPageNumber(selected);
   };
 
-  const displayCards = cards
+  const displayCards = filteredCards
     .slice(pageNumber * cardsPerPage, (pageNumber + 1) * cardsPerPage)
     .map((card) => <Card key={card.id} card={card} />);
 
   return (
     <div className="dark-container">
       <div className="container-sm">
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Buscar por nombre..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
         <div className="row">{displayCards}</div>
         <div className="pagination-container">
           <ReactPaginate
