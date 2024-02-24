@@ -50,18 +50,8 @@ export async function loginUser(login){
         return null        
     }
 }
+/////////
 
-
-export async function getUserProfile(userId, token) {
-	try {
-		const response = await api.get(`users/profile/${userId}`, {
-			headers: getHeader()
-		})
-		return response.data
-	} catch (error) {
-		throw error
-	}
-}
 
 export async function deleteUser(userId) {
 	try {

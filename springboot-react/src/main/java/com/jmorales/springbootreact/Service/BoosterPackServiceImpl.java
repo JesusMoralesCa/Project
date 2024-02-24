@@ -1,14 +1,15 @@
 package com.jmorales.springbootreact.Service;
 
 import com.jmorales.springbootreact.Exception.PackAlreadyExistException;
+import com.jmorales.springbootreact.Exception.PackNotFoundException;
 import com.jmorales.springbootreact.Model.BoosterPack;
 import com.jmorales.springbootreact.Model.Card;
 import com.jmorales.springbootreact.Payload.Response.BoosterPackResponse;
 import com.jmorales.springbootreact.Payload.Response.CardResponse;
 import com.jmorales.springbootreact.Repository.BoosterPackRepository;
+import com.jmorales.springbootreact.Serialice.BlobUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,7 +17,6 @@ import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 public class BoosterPackServiceImpl implements IBoosterPackService {
 
     private final BoosterPackRepository boosterPackRepository;
+
 
 
     @Override
@@ -54,7 +55,7 @@ public class BoosterPackServiceImpl implements IBoosterPackService {
             throw new PackAlreadyExistException("El pack con nombre " + name + " ya existe");
         }
     }
-
+/*
     @Override
     public List<Card> getAllCardsFromBoosterPack(String packName) {
 
@@ -62,14 +63,14 @@ public class BoosterPackServiceImpl implements IBoosterPackService {
         List<Card> cardsList = pack.getCardsList();
         return cardsList;
     }
-
+*/
     @Override
     public List<CardResponse> getAllCardResponseFromBoosterPack(String packName) {
         BoosterPack pack = getPack(packName);
         List<Card> cardsList = pack.getCardsList();
 
         List<CardResponse> cardResponses = cardsList.stream()
-                .map(card -> new CardResponse(card.getId(), card.getName(), convertBlobToBase64(card.getImage()),card.getDescription(), card.getBoosterPackName()))
+                .map(card -> new CardResponse(card.getId(), card.getName(), BlobUtil.convertBlobToBase64(card.getImage()),card.getDescription(), card.getBoosterPackName()))
                 .collect(Collectors.toList());
 
         return cardResponses;
@@ -90,7 +91,7 @@ public class BoosterPackServiceImpl implements IBoosterPackService {
 
     @Override
     public BoosterPack getPack(String packName) {
-        return boosterPackRepository.findByName(packName).orElseThrow(() -> new UsernameNotFoundException("Pack not Found"));
+        return boosterPackRepository.findByName(packName).orElseThrow(() -> new PackNotFoundException("Pack not Found"));
     }
 
 
@@ -101,7 +102,7 @@ public class BoosterPackServiceImpl implements IBoosterPackService {
 
         return new BoosterPackResponse(pack.getId(),
                 pack.getName(),
-                convertBlobToBase64(pack.getImage()),
+                BlobUtil.convertBlobToBase64(pack.getImage()),
                 cardResponseList
                 );
     }
@@ -117,19 +118,5 @@ public class BoosterPackServiceImpl implements IBoosterPackService {
     }
 
 
-    private String convertBlobToBase64(Blob blob) {
-        if (blob == null) {
-            return null;
-        }
-
-        try {
-            byte[] bytes = blob.getBytes(1, (int) blob.length());
-            return Base64.getEncoder().encodeToString(bytes);
-        } catch (SQLException e) {
-            // Manejar la excepción según tus necesidades
-            e.printStackTrace();
-            return null;
-        }
-    }
 
 }

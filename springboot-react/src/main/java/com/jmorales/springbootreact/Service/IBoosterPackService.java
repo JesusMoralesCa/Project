@@ -17,7 +17,7 @@ public interface IBoosterPackService {
 
     BoosterPack createBoosterPack(String name, MultipartFile file) throws SQLException, IOException;
 
-    List<Card> getAllCardsFromBoosterPack(String packName);
+    //List<Card> getAllCardsFromBoosterPack(String packName);
 
     List<CardResponse> getAllCardResponseFromBoosterPack(String packName);
 

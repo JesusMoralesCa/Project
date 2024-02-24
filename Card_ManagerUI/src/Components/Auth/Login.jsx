@@ -6,7 +6,7 @@ import { useAuth } from "./AuthProvider";
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [login, setLogin] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -46,11 +46,11 @@ const Login = () => {
           </label>
           <div>
             <input
-              id="username"
-              name="username"
-              type="username"
+              id="email"
+              name="email"
+              type="email"
               className="form-control"
-              value={login.username}
+              value={login.email}
               onChange={handleInputChange}
             />
           </div>
