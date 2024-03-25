@@ -1,10 +1,10 @@
 import React from "react";
-import AllCardListing from "../Common/AllCardListing";
+import Carrousel from "../Common/Carrousel";
 
 const Home = () => {
   return (
     <div>
-      <AllCardListing />
+      <Carrousel />
     </div>
   );
 };

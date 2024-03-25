@@ -15,16 +15,13 @@ const Logout = () => {
   return (
     <>
       <li>
-        <Link className="dropdown-item" to={"/profile"}>
+        <Link to={"/profile"}>
           Profile
         </Link>
       </li>
-      <li>
-        <hr className="dropdown-divider" />
-      </li>
-      <button className="dropdown-item" onClick={handleLogout}>
+      <li onClick={handleLogout}>
         Logout
-      </button>
+      </li>
     </>
   );
 };

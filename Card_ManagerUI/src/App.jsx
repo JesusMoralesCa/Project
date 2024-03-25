@@ -14,6 +14,7 @@ import AddNewCard from "../src/Components/CardManager/AddNewCard";
 import CardPageInfo from "../src/Components/CardManager/CardPageInfo";
 import AdminBoard from "./Components/Common/AdminBoard";
 import { AuthProvider } from "./Components/Auth/AuthProvider";
+import Header from "./Components/Layout/Header";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
       <AuthProvider>
         <main>
           <Router>
-            <NavBar></NavBar>
+            <Header></Header>
             <Routes>
               <Route index element={<Home />}></Route>
               <Route path="/" element={<Home />}></Route>
