@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createPack } from "../Utils/ApiFunctions";
 import { Link } from "react-router-dom";
+import Breadcrumb from "../Layout/Breadcrumb";
 
 const AddBoosterPack = () => {
   const [newPack, setNewPack] = useState({
@@ -47,41 +48,43 @@ const AddBoosterPack = () => {
   };
 
   return (
-    <section className="container mt-5 mb5">
-      <div className="row justify-content-center">
-        <div className="col-md-8 col-lg-6">
-          <h2 className="mt-5 mb-2">Add a New Pack</h2>
-          {successMessage && (
-            <div className="alert alert-success fade show">
-              {" "}
-              {successMessage}
+    <>
+            <Breadcrumb 
+                backgroundImage="../src/img/break_NP.jpg" 
+                page="New Pack" 
+                text="Create a new Booster Pack" 
+            />
+
+      <div className="signup spad">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="login__form">
+                <form onSubmit={handleSubmit}>
+                  <h3 htmlFor="cardName">
+                    Pack Name
+                  </h3>
+                  <div className="input__item">
+                    <input
+                      required
+                      type="text"
+                      className="form-control"
+                      id="packName"
+                      name="packName"
+                      value={newPack.packName}
+                      onChange={handleInputChange}
+                    />
+                    
+                  </div>
+                  <button type="submit" className="site-btn">Save Pack</button>
+                </form>
+              </div>
             </div>
-          )}
-
-          {errorMessage && (
-            <div className="alert alert-danger fade show"> {errorMessage}</div>
-          )}
-
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label htmlFor="packName" className="form-label">
-                Booster Pack Name
-              </label>
-              <input
-                required
-                type="text"
-                className="form-control"
-                id="packName"
-                name="packName"
-                value={newPack.packName}
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="file" className="form-label">
+            <div className="col-lg-6">
+                
+              <h3 htmlFor="cardImage" className="Card__Image__h3">
                 Pack image
-              </label>
+              </h3>
               <input
                 required
                 name="file"
@@ -98,20 +101,22 @@ const AddBoosterPack = () => {
                   className="border border-5 mb-3 mt-3"
                 ></img>
               )}
-            </div>
 
-            <div className="d-grid gap-2 d-md-flex mt-2">
-              <Link to={"/"} className="btn btn-outline-info">
-                Cards
-              </Link>
-              <button type="submit" className="btn btn-outline-primary ml-5">
-                Save Pack
-              </button>
+              {successMessage && (
+                <div className="alert alert-success fade show">
+                  {" "}
+                  {successMessage}
+                </div>
+              )}
+
+              {errorMessage && (
+                <div className="alert alert-danger fade show"> {errorMessage}</div>
+              )}
             </div>
-          </form>
+          </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

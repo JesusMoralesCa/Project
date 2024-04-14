@@ -25,33 +25,37 @@ const Header = () => {
                         <div class="">
                             <nav class="header__menu mobile-menu">
                                 <ul>
-                                    <li class="active"><a href="./index.html">Homepage</a></li>
-                                    <li><Link to={"/"}>Boosters <span class="arrow_carrot-down"></span></Link></li>
-                                    <li><Link to={"/"}>Cards <span class="arrow_carrot-down"></span></Link></li>
+                                    <li class="active"><a href="/">Homepage</a></li>
+                                    <li><Link to={"/BoosterPacks"}>Boosters <span class="arrow_carrot-down"></span></Link></li>
+                                    <li><Link to={"/NewCard"}>Cards <span class="arrow_carrot-down"></span></Link></li>
                                     <li><Link to={"/"}>Decks <span class="arrow_carrot-down"></span></Link></li>
-                                            {isLoggedIn && userRole === "ROLE_ADMIN" && (
-                                                <li>
-                                                    <NavLink to={"/admin"}>
-                                                        Admin
-                                                    </NavLink>
-                                                </li>
-                                            )}
-                                    </ul>
+                                    {isLoggedIn && userRole === "ROLE_ADMIN" && (
+                                        <li>
+                                            <NavLink to={"/admin"}>
+                                                Admin
+                                            </NavLink>
+                                        </li>
+                                    )}
+                                </ul>
                             </nav>
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <div class="header__right">
-                                {isLoggedIn ? (
-                                    <Logout />
-                                ) : (
-                                        <>
-                                            <Link to={"/Registration"}>Sign Up</Link>
-                                            <Link to={"/login"}>Login</Link>
-                                        </>
-                                )}
+                        <div class="header__right mobile-menu">
+                            {isLoggedIn ? (
+                                <Logout />
+                            ) : (
+                                <>
+                                    <ul>
+                                        <li><Link to={"/Registration"}>Sign Up</Link></li>
+                                        <li><Link to={"/login"}>Login</Link></li>
+                                    </ul>
+                                    
+                                    
+                                </>
+                            )}
 
-                           
+
                         </div>
                     </div>
                 </div>

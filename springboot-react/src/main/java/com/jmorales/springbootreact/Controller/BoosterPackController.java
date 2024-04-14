@@ -28,13 +28,28 @@ public class BoosterPackController {
     private final IBoosterPackService boosterPackService;
     private final ICardService cardService;
 
+
+    @GetMapping("/singlePack")
+    public ResponseEntity<BoosterPackResponse> getPack(@RequestParam String packName) throws SQLException {
+        BoosterPackResponse packResponse = new BoosterPackResponse();
+        packResponse = boosterPackService.getBoosterPackResponseLow(packName);
+
+
+        return new ResponseEntity<>(packResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/cards")
+    public List<CardResponse> getAllCardsFromBoosterPack(@RequestParam String packName){
+        return  boosterPackService.getAllCardResponseFromBoosterPack(packName);
+    }
+
+
     @GetMapping("/allPacksNames")
     public ResponseEntity<List<BoosterPackResponse>> getAllBoostersName() throws SQLException {
         List<BoosterPackResponse> packResponses = new ArrayList<>();
         List<BoosterPack> packsList = boosterPackService.getBoosterPacks();
 
         for (BoosterPack pack : packsList) {
-            // Obtener la respuesta del paquete y agregarla a la lista
             BoosterPackResponse packResponse = boosterPackService.getBoosterPackResponseLow(pack.getName());
             packResponses.add(packResponse);
         }
@@ -49,7 +64,6 @@ public class BoosterPackController {
         List<BoosterPack> packsList = boosterPackService.getBoosterPacks();
 
         for (BoosterPack pack : packsList) {
-            // Obtener la respuesta del paquete y agregarla a la lista
             BoosterPackResponse packResponse = boosterPackService.getBoosterPackResponse(pack.getName());
             packResponses.add(packResponse);
         }
@@ -59,10 +73,7 @@ public class BoosterPackController {
 
 
 
-    @GetMapping("/cards")
-    public List<CardResponse> getAllCardsFromBoosterPack(@RequestParam String packName){
-        return  boosterPackService.getAllCardResponseFromBoosterPack(packName);
-    }
+
 
 
     @PostMapping("/createPack")

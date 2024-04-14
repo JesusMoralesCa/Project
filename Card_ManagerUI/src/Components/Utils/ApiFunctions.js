@@ -113,6 +113,7 @@ export async function createCard(cardName, cardImage, description, packName) {
 }
 
 
+/*Funcion para obtener todos los packs sin sus cartas */
 export async function getAllBoosterPackName() {
 	try {
 		const response = await api.get("/packs/allPacksNames")
@@ -122,6 +123,29 @@ export async function getAllBoosterPackName() {
 	}
 }
 
+/*Funcion para obtener un solo pack, sin sus cartas */
+
+export async function getPackLow(packName) {
+    try {
+
+        const response = await api.get(`/packs/singlePack?packName=${packName}`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+/*Funcion para obtener todas las cartas del pack */
+
+export async function getAllCardsFromBoosterPack(packName) {
+    try {
+        const response = await api.get(`/packs/cards?packName=${packName}`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
 
 export async function getAllCards() {
 	try {
@@ -141,3 +165,5 @@ export async function getSingleCard(cardName) {
 	}
   }
   
+
+

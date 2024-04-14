@@ -1,9 +1,8 @@
 package com.jmorales.springbootreact.Payload.Response;
 
-import com.jmorales.springbootreact.Model.Card;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.util.codec.binary.Base64;
+
 
 import java.util.List;
 
@@ -23,9 +22,10 @@ public class BoosterPackResponse {
         this.cardsList = cardsList;
     }
 
-    public BoosterPackResponse(Long id, String name) {
+    public BoosterPackResponse(Long id, String name, String image) {
         this.id = id;
         this.name = name;
+        this.image = image;
     }
 
 }

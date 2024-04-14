@@ -113,7 +113,9 @@ public class BoosterPackServiceImpl implements IBoosterPackService {
 
         BoosterPackResponse response =new BoosterPackResponse(
                 pack.getId(),
-                pack.getName());
+                pack.getName(),
+                BlobUtil.convertBlobToBase64(pack.getImage())
+        );
         return response;
     }
 

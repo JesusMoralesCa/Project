@@ -1,49 +1,63 @@
 import React from "react";
-import 'react-owl-carousel2/style.css';
-
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 const Carrousel = () => {
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
-    <div class="hero">
-      <div class="container">
-            <div class="hero__slider owl-carousel">
-                <div class="hero__items set-bg" data-setbg="../src/img/digimonLogo.png">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+    <div className="product">
+      <div className="container">
+        <Slider {...settings} className="product__slider">
+          <div className="product__items">
+            <img src="../src/img/digimonLogo.jpg" alt="Digimon Logo" className="product__image" />
+            <div className="row">
+              <div className="col-lg-6">
+                <div className="product__text">
+
+                  <h2>Digimon Card Game</h2>
+                  <p>Check out the product</p>
+                  <a href="#"><span>Watch Now</span> <i className="fa fa-angle-right"></i></a>
                 </div>
-                <div class="hero__items set-bg" data-setbg="../src/img/digimonLogo.png">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero__items set-bg" data-setbg="../src/img/digimonLogo.png">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-        </div>
+          </div>
+          <div className="product__items">
+            <img src="../src/img/magicLogo.jpg" alt="Magic Logo" className="product__image" />
+            <div className="row">
+              <div className="col-lg-6">
+                <div className="product__text">
+
+                  <h2>Magic The Gathering</h2>
+                  <p>Check out the product</p>
+                  <a href="#"><span>Watch Now</span> <i className="fa fa-angle-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="product__items">
+            <img src="../src/img/yugiohLogo.jpg" alt="Yu-Gi-Oh! Logo" className="product__image" />
+            <div className="row">
+              <div className="col-lg-6">
+                <div className="product__text">
+
+                  <h2>Yu-Gi-Oh!</h2>
+                  <p>Check out the product</p>
+                  <a href="#"><span>Watch Now</span> <i className="fa fa-angle-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Slider>
+
+      </div>
     </div>
   );
 };

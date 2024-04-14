@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { loginUser } from "../Utils/ApiFunctions";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthProvider";
+import Breadcrumb from "../Layout/Breadcrumb";
+import { CiMail } from "react-icons/ci";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -28,7 +31,7 @@ const Login = () => {
       navigate(redirectUrl, { replace: true });
       window.location.reload();
     } else {
-      setErrorMessage("Usuario o contrasena invalido.");
+      setErrorMessage("Usuario o contraseña inválido.");
     }
     setTimeout(() => {
       setErrorMessage("");
@@ -36,57 +39,62 @@ const Login = () => {
   };
 
   return (
-    <section className="container col-6 mt-5 mb-5">
-      {errorMessage && <p className="alert alert-danger">{errorMessage}</p>}
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="row mb-3">
-          <label htmlFor="email" className="col-sm-2 col-form-label">
-            Email
-          </label>
-          <div>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              className="form-control"
-              value={login.email}
-              onChange={handleInputChange}
-            />
+    <>
+      <Breadcrumb
+        backgroundImage="../src/img/break.jpg"
+        page="Login"
+        text="Welcome to the TCG Manager"
+      />
+      <div className="login spad">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="login__form">
+                <h3>Login</h3>
+                <form onSubmit={handleSubmit}>
+                  <div className="input__item">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      className="form-control"
+                      value={login.email}
+                      onChange={handleInputChange}
+                    />
+                    <span className="icon_mail"><CiMail /></span>
+                  </div>
+                  <div className="input__item">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      className="form-control"
+                      value={login.password}
+                      onChange={handleInputChange}
+                    />
+                    <span className="icon_lock"><RiLockPasswordLine /></span>
+                  </div>
+                  <button type="submit" className="site-btn">
+                    Login Now
+                  </button>
+                </form>
+                <Link to="#" className="forget_pass">
+                  Forgot Your Password?
+                </Link>
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className="login__register">
+                <h3>Don’t Have An Account?</h3>
+                <Link to="/Registration" className="primary-btn">
+                  Register Now
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div className="row mb-3">
-          <label htmlFor="password" className="col-sm-2 col-form-label">
-            Password
-          </label>
-          <div>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              className="form-control"
-              value={login.password}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-
-        <div className="mb-3">
-          <button
-            type="submit"
-            className="btn btn-dark"
-            style={{ marginRight: "10px" }}
-          >
-            Login
-          </button>
-          <span style={{ marginLeft: "10px" }}>
-            Don't' have an account yet?
-            <Link to={"/registration"}> Register</Link>
-          </span>
-        </div>
-      </form>
-    </section>
+      </div>
+    </>
   );
 };
 

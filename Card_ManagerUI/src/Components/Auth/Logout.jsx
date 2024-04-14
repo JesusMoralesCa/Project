@@ -14,15 +14,20 @@ const Logout = () => {
 
   return (
     <>
-      <li>
-        <Link to={"/profile"}>
-          Profile
-        </Link>
-      </li>
-      <li onClick={handleLogout}>
-        Logout
-      </li>
+      <ul>
+        <li>
+          <Link to={"/profile"}>
+            Profile
+          </Link>
+        </li>
+        <li>
+          <Link onClick={handleLogout}>
+            Logout
+          </Link>
+        </li>
+      </ul>
     </>
+
   );
 };
 

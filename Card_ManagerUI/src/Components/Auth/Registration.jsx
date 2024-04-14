@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { registerUser } from "../Utils/ApiFunctions";
 import { Link } from "react-router-dom";
+import Breadcrumb from "../Layout/Breadcrumb";
+import { CgProfile } from "react-icons/cg";
+import { CiMail } from "react-icons/ci";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 const Registration = () => {
   const [registration, setRegistration] = useState({
@@ -34,73 +38,68 @@ const Registration = () => {
   };
 
   return (
-    <section className="container col-6 mt-5 mb-5">
-      {errorMessage && <p className="alert alert-danger">{errorMessage}</p>}
-      {successMessage && (
-        <p className="alert alert-success">{successMessage}</p>
-      )}
+    <>
+      <Breadcrumb
+        backgroundImage="../src/img/break_RE.jpg"
+        page="Registration"
+        text="Welcome to the TCG Manager"
+      />
 
-      <h2>Register</h2>
-      <form onSubmit={handleRegistration}>
-        <div className="mb-3 row">
-          <label htmlFor="email" className="col-sm-2 col-form-label">
-            Username
-          </label>
-          <div className="col-sm-10">
-            <input
-              id="username"
-              name="username"
-              type="username"
-              className="form-control"
-              value={registration.username}
-              onChange={handleInputChange}
-            />
+
+      <div class="signup spad">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="login__form">
+                <h3>Sign Up</h3>
+                <form onSubmit={handleRegistration}>
+                  <div class="input__item">
+                    <input
+                      placeholder="Username"
+                      id="username"
+                      name="username"
+                      type="username"
+                      className="form-control"
+                      value={registration.username}
+                      onChange={handleInputChange}
+                    />
+                    <span class="icon_profile"><CgProfile /></span>
+                  </div>
+                  <div class="input__item">
+                    <input placeholder="Email"
+                      id="email"
+                      name="email"
+                      type="email"
+                      className="form-control"
+                      value={registration.email}
+                      onChange={handleInputChange}
+                    />
+                    <span class="icon_mail"><CiMail /></span>
+                  </div>
+                  <div class="input__item">
+                    <input
+                      placeholder="Password"
+                      type="password"
+                      className="form-control"
+                      id="password"
+                      name="password"
+                      value={registration.password}
+                      onChange={handleInputChange}
+                    />
+                    <span class="icon_lock"><RiLockPasswordLine /></span>
+                  </div>
+                  <button type="submit" class="site-btn">Login Now</button>
+                </form>
+                <h5>Already have an account? <Link to={"/login"}>Log in!</Link></h5>
+              </div>
+            </div>
+            <div class="col-lg-6">
+
+            </div>
           </div>
         </div>
-        <div className="mb-3 row">
-          <label htmlFor="email" className="col-sm-2 col-form-label">
-            Email
-          </label>
-          <div className="col-sm-10">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              className="form-control"
-              value={registration.email}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <div className="mb-3 row">
-          <label htmlFor="password" className="col-sm-2 col-form-label">
-            Password
-          </label>
-          <div className="col-sm-10">
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              name="password"
-              value={registration.password}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <div className="mb-3">
-          <button
-            type="submit"
-            className="btn btn-hotel"
-            style={{ marginRight: "10px" }}
-          >
-            Register
-          </button>
-          <span style={{ marginLeft: "10px" }}>
-            Already have an account? <Link to={"/login"}>Login</Link>
-          </span>
-        </div>
-      </form>
-    </section>
+      </div>
+    </>
   );
 };
 

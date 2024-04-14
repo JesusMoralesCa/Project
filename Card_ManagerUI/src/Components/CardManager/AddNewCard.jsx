@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createCard, getAllBoosterPackName } from "../Utils/ApiFunctions";
+import Breadcrumb from "../Layout/Breadcrumb";
 
 const AddNewCard = () => {
   const [newCard, setNewCard] = useState({
@@ -78,81 +79,81 @@ const AddNewCard = () => {
   };
 
   return (
-    <section className="container mt-5 mb5">
-      <div className="row justify-content-center">
-        <div className="col-lg-3">
-          <h2 className="mt-5 mb-2">Add a New Card</h2>
-          {successMessage && (
-            <div className="alert alert-success fade show">
-              {" "}
-              {successMessage}
+    <>
+            <Breadcrumb 
+                backgroundImage="../src/img/break_yu.jpg" 
+                page="New Card" 
+                text="Create a new Card" 
+            />
+
+      <div className="signup spad">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="login__form">
+                <form onSubmit={handleSubmit}>
+                  <h3 htmlFor="cardName">
+                    Card Name
+                  </h3>
+                  <div className="input__item">
+                    <input
+                      required
+                      type="text"
+                      className="form-control"
+                      id="cardName"
+                      name="cardName"
+                      value={newCard.cardName}
+                      onChange={handleInputChange}
+                    />
+                    
+                  </div>
+                  <div className="input__item">
+                    <h3 htmlFor="description" >
+                      Card Description
+                    </h3>
+                    <input
+                      required
+                      type="text"
+                      className="form-control"
+                      id="description"
+                      name="description"
+                      value={newCard.description}
+                      onChange={handleInputChange}
+                    />
+                    
+                  </div>
+                  <div className="input__item">
+                    <h3 htmlFor="packName" >
+                      Pack
+                    </h3>
+                    <select
+                      className="form-select"
+                      name="packName"
+                      size="1"
+                      value={newCard.packName}
+                      onChange={handlePackChange}
+                    >
+                      <option>Select</option>
+                      {packNames.map((name, index) => (
+                        <option key={index} value={name}>
+                          {name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <button type="submit" className="site-btn">Save Card</button>
+                </form>
+              </div>
             </div>
-          )}
-
-          {errorMessage && (
-            <div className="alert alert-danger fade show"> {errorMessage}</div>
-          )}
-
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label htmlFor="cardName" className="form-label">
-                Card Name
-              </label>
-              <input
-                required
-                type="text"
-                className="form-control"
-                id="cardName"
-                name="cardName"
-                value={newCard.cardName}
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="description" className="form-label">
-                Card Description
-              </label>
-              <input
-                required
-                type="text"
-                className="form-control"
-                id="description"
-                name="description"
-                value={newCard.description}
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="packName" className="form-label">
-                Pack
-              </label>
-
-              <select
-                className="form-select"
-                name="packName"
-                size="1"
-                value={newCard.packName}
-                onChange={handlePackChange}
-              >
-                <option>Select</option>
-                {packNames.map((name, index) => (
-                  <option key={index} value={name}>
-                    {name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="cardImage" className="form-label">
+            <div className="col-lg-6">
+                
+              <h3 htmlFor="cardImage" className="Card__Image__h3">
                 Card image
-              </label>
+              </h3>
               <input
                 required
-                name="file"
-                id="file"
+                name="cardImage"
+                id="cardImage"
                 type="file"
                 className="form-control"
                 onChange={handleImageChange}
@@ -165,17 +166,22 @@ const AddNewCard = () => {
                   className="border border-5 mb-3 mt-3"
                 ></img>
               )}
-            </div>
 
-            <div className="d-grid gap-2 d-md-flex mt-2">
-              <button type="submit" className="btn btn-outline-primary ml-5">
-                Save Card
-              </button>
+              {successMessage && (
+                <div className="alert alert-success fade show">
+                  {" "}
+                  {successMessage}
+                </div>
+              )}
+
+              {errorMessage && (
+                <div className="alert alert-danger fade show"> {errorMessage}</div>
+              )}
             </div>
-          </form>
+          </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 
